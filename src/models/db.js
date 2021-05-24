@@ -7,7 +7,6 @@ const pool = mysql.createPool({
   database: 'express_jwt'
 });
 
-// 중복체크추가바람
 module.exports.isIdDuplicate = async (id) => {
   const connection = await pool.getConnection(async conn => conn);
   const [rows, fields] = await connection.query('SELECT * FROM users WHERE id=?', [id])
