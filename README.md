@@ -15,7 +15,7 @@ sign up if id is not duplicated
 # DB  
 USER: test  
 PASSWORD: test  
-DATABASE: express-jwt  
+DATABASE: express_jwt  
 TABLE: users  
 | Field    | Type         | Null | Key | Default | Extra |
 |----------|--------------|------|-----|---------|-------|
