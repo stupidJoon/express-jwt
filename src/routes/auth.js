@@ -19,19 +19,18 @@ router.post('/signin', async (req, res) => {
     const token = jwt.createToken(id);
     res.cookie('token', token, { httpOnly: true });
     res.status(200).json(token);
-  }
-  else {
+  } else {
     res.status(401).json({ });
   }
 });
 
 router.post('/signup', async (req, res) => {
   const { id, password } = req.body;
-  if (await db.isIdDuplicate(id)) {
+  if (await db.isIdDuplicated(id)) {
     return res.json(`You're id is duplicated.`);
   }
-  const test = await db.signUp(id, password);
-  res.json(test)
+  await db.signUp(id, password);
+  res.json(true);
 });
 
 module.exports = router;

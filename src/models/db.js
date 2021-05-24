@@ -7,7 +7,7 @@ const pool = mysql.createPool({
   database: 'express_jwt'
 });
 
-module.exports.isIdDuplicate = async (id) => {
+module.exports.isIdDuplicated = async (id) => {
   const connection = await pool.getConnection(async conn => conn);
   const [rows, fields] = await connection.query('SELECT * FROM users WHERE id=?', [id])
   connection.release();
@@ -23,7 +23,7 @@ module.exports.signIn = async (id, password) => {
 
 module.exports.signUp = async (id, password) => {
   const connection = await pool.getConnection(async conn => conn);
-  const test = await connection.query('INSERT INTO users(id, password) VALUES (?, ?)', [id, password]);
+  const [rows, fields] = await connection.query('INSERT INTO users(id, password) VALUES (?, ?)', [id, password]);
   connection.release();
-  return test;
+  return true;
 }
